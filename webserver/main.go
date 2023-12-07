@@ -33,7 +33,6 @@ func hello(writer http.ResponseWriter, req *http.Request) {
 func main() {
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)
-	// http.HandleFunc("/form", form)
 	http.HandleFunc("/hello", hello)
 	port := createPort()
 
