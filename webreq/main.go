@@ -4,14 +4,16 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 )
 
-const url = "https://lco.dev"
+const thisUrl = "https://lco.dev"
+const checkUrl = "https://lco.dev:3000/local?coursename=reactjs&paymentid=uebfuifbbis"
 
 func main() {
 	fmt.Println("LCO web request")
 
-	res, err := http.Get(url)
+	res, err := http.Get(thisUrl)
 
 	if err != nil {
 		panic(err)
@@ -28,4 +30,19 @@ func main() {
 	}
 
 	fmt.Printf("%v", string(body))
+
+	//parsing URL
+	resultUrl, _ := url.Parse(checkUrl)
+
+	fmt.Println(resultUrl.Scheme)
+	fmt.Println(resultUrl.Host)
+	fmt.Println(resultUrl.Port())
+	fmt.Println(resultUrl.Path)
+	fmt.Println(resultUrl.RawQuery)
+
+	qparams := resultUrl.Query()
+
+	fmt.Printf("%T\n", qparams)
+	fmt.Println(qparams)
+	fmt.Printf("%T\n", qparams["coursename"])
 }
