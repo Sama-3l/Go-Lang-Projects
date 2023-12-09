@@ -74,7 +74,6 @@ func createMovie(writer http.ResponseWriter, req *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	var movie Movie
 	_ = json.NewDecoder(req.Body).Decode(&movie)
-	fmt.Printf("%v", movie)
 	movie.ID = strconv.Itoa(rand.Intn(10000000))
 	movies = append(movies, movie)
 	json.NewEncoder(writer).Encode(movie)
