@@ -19,7 +19,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("REsponse is of type %T\n", res)
+	fmt.Printf("Response is of type %T\n", res)
 
 	defer res.Body.Close()
 
