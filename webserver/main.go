@@ -36,7 +36,7 @@ func main() {
 	http.HandleFunc("/hello", hello)
 	port := createPort()
 
-	fmt.Printf("Server at port %v", port)
+	fmt.Printf("Server running at port %v", port)
 	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal(err)
 	}
