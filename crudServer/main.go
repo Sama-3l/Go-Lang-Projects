@@ -107,7 +107,7 @@ func main() {
 	r.HandleFunc("/movies/{id}", updateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}", deleteMovie).Methods("DELETE")
 
-	fmt.Println("Serve running")
 	port := createPort()
+	fmt.Printf("Serve running at%v", port)
 	log.Fatal(http.ListenAndServe(port, r))
 }
