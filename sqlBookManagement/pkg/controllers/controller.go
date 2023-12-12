@@ -1,6 +1,11 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
+	"sqlBookManagement/pkg/models"
+)
+
+var NewBook models.Book
 
 func CreateBook(w http.ResponseWriter, req *http.Request) {
 
