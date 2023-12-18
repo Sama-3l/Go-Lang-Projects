@@ -63,6 +63,9 @@ func UpdateBook(w http.ResponseWriter, req *http.Request) {
 	if updateBook.Publication != "" {
 		bookDetails.Publication = updateBook.Publication
 	}
+	if len(updateBook.Tags) > 0 {
+		bookDetails.Tags = updateBook.Tags
+	}
 	db.Save(&bookDetails)
 	res, _ := json.Marshal(bookDetails)
 	w.Header().Set("Content-Type", "pkglication/json")
