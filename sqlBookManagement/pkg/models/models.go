@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"sqlBookManagement/pkg/config"
 
 	"github.com/jinzhu/gorm"
@@ -11,7 +10,7 @@ var db *gorm.DB
 
 type Book struct {
 	gorm.Model
-	Name        string `gorm:""json:"name"`
+	Name        string `gorm:"" json:"name"`
 	Author      string `json:"author"`
 	Publication string `json:"publication"`
 	Tags        []Tags `gorm:"many2many:book_tags;" json:"tags"`
@@ -19,7 +18,7 @@ type Book struct {
 
 type Tags struct {
 	gorm.Model
-	Tag_Name string `gorm:""json:"tag-name"`
+	Tag_Name string `gorm:"unique" json:"tag-name"`
 }
 
 func init() {
@@ -31,7 +30,6 @@ func init() {
 func (b *Book) CreateBook() *Book {
 	db.NewRecord(b)
 	db.Create(&b)
-	fmt.Println(b)
 	return b
 }
 
@@ -52,6 +50,11 @@ func GetBookById(Id int64) (*Book, *gorm.DB) {
 
 func DeleteBook(Id int64) Book {
 	var book Book
-	db.Where("ID=?", Id).Delete(book)
+	db.Preload("Tags").First(&book, Id)
+	db.Delete(&book)
+	for _, tag := range book.Tags {
+		db.Model(&book).Association("Tags").Delete(&tag)
+		db.Delete(&tag)
+	}
 	return book
 }
