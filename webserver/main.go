@@ -27,7 +27,7 @@ func hello(writer http.ResponseWriter, req *http.Request) {
 		http.Error(writer, "Wrong method", http.StatusNotFound)
 		return
 	}
-	fmt.Fprintf(writer, "<h1>Hello, World!</h1>")
+	fmt.Fprintf(writer, "<h1>Hello, People!</h1>")
 }
 
 func main() {
