@@ -22,7 +22,7 @@ func createPort() string {
 func main() {
 	r := routes.Router()
 	port := createPort()
-	fmt.Printf("Starting server at port%v\n", port)
+	fmt.Printf("Serving api at port%v\n", port)
 
 	log.Fatal(http.ListenAndServe(port, r))
 }
