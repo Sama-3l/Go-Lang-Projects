@@ -11,7 +11,7 @@ const thisUrl = "https://lco.dev"
 const checkUrl = "https://lco.dev:3000/local?coursename=reactjs&paymentid=uebfuifbbis"
 
 func main() {
-	fmt.Println("LCO web request")
+	fmt.Println("LCO web request ")
 
 	res, err := http.Get(thisUrl)
 
